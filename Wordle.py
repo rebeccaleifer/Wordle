@@ -20,10 +20,13 @@ def wordle():
     gw = WordleGWindow()
     gw.add_enter_listener(enter_action)
 
+    # set white color as default for keys as users play the game
+    # set white color as default til users click ENTER
 
-
+    # change the key color based on the validation
+    # embedded in the loop of validation
     gw.set_key_color("Q", CORRECT_COLOR)
-    gw.get_key_color()
+    gw.get_key_color("Q")
 
 
 # Startup code
