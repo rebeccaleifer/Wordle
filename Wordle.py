@@ -23,3 +23,4 @@ def wordle():
 if __name__ == "__main__":
     wordle()
     TheWordle = choice(FIVE_LETTER_WORDS)
+    print(TheWordle)
