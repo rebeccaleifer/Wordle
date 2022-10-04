@@ -16,13 +16,15 @@ d = enchant.Dict("en_US")
 def wordle(word):
     
     def enter_action(guess):
+        
         if d.check(guess) or guess == word: # This line is here because when the system chose COOEY as a word, the Enchant package didn't think it was one.
             colorCheck(word, guess)
-            gw.show_message("Nice guess" + " " + guess)
+            gw.show_message("Guess: " + guess + " Correct Word: " + word)
         else:
             gw.show_message("Not a valid word")
 
     gw = WordleGWindow()
+    gw.show_message("Correct word: " + word)
     gw.add_enter_listener(enter_action)
 
     def colorCheck(word, guess):
@@ -65,7 +67,12 @@ def wordle(word):
                 gw.set_square_color(row, currentColumn, "#999999")
             index = index + 1
             currentColumn = currentColumn + 1
-        gw.set_current_row(row + 1)
+        print("Current Row: ", gw.get_current_row())
+        if gw.get_current_row() < 5:
+            gw.set_current_row(row + 1)
+
+        print("Next Row: ", gw.get_current_row())
+            
         
 
 
@@ -76,5 +83,3 @@ if __name__ == "__main__":
     # TheWordle = "SACKS"
     wordle(TheWordle.upper())
     
-    print(TheWordle)
-    # print(colorCheck("phage", "scoff"))
