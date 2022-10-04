@@ -11,12 +11,9 @@ import random
 import enchant
 from random import choice
 from WordleDictionary import FIVE_LETTER_WORDS
-<<<<<<< HEAD
-from WordleGraphics import CORRECT_COLOR, WordleGWindow, N_COLS, N_ROWS
-=======
+
 from WordleGraphics import WordleGWindow, N_COLS, N_ROWS
 d = enchant.Dict("en_US")
->>>>>>> 092d096741708763a735cbdd906960b037f3c8c7
 
 
 def wordle(word):
