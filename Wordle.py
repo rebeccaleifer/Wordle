@@ -28,8 +28,6 @@ def wordle(word):
     def colorCheck(word, guess):
         row = gw.get_current_row()
         print(gw.get_square_color(row, 0))
-        while gw.get_square_color(row, 0) != "#FFFFFF":
-            row = row + 1
         wordTemp = word
         index = 0
         # Checking for GREEN
@@ -68,7 +66,7 @@ def wordle(word):
 
 if __name__ == "__main__":
     TheWordle = choice(FIVE_LETTER_WORDS)
-    # wordle(TheWordle.upper())
-    wordle("DOWNS")
+    wordle(TheWordle.upper())
+    
     print(TheWordle)
     # print(colorCheck("phage", "scoff"))
