@@ -6,16 +6,21 @@ BE SURE TO UPDATE THIS COMMENT WHEN YOU WRITE THE CODE.
 """
 
 import random
+import enchant
 from random import choice
 from WordleDictionary import FIVE_LETTER_WORDS
 from WordleGraphics import WordleGWindow, N_COLS, N_ROWS
+d = enchant.Dict("en_US")
 
 
+def wordle(word):
 
-def wordle():
-
-    def enter_action(s):
-        gw.show_message("You have to implement this method.")
+    def enter_action(guess):
+        if d.check(guess) or guess == word: # This line is here because when the system chose COOEY as a word, the Enchant package didn't think it was one.
+            result = colorCheck(word, guess)
+            gw.show_message("Nice guess" + " " + result[0] + " " + guess)
+        else:
+            gw.show_message("Not a valid word")
 
     gw = WordleGWindow()
     gw.add_enter_listener(enter_action)
@@ -53,7 +58,8 @@ def colorCheck(word, guess):
 # Startup code
 
 if __name__ == "__main__":
-    #wordle()
     TheWordle = choice(FIVE_LETTER_WORDS)
+    wordle(TheWordle.upper())
+    
     print(TheWordle)
-    print(colorCheck("phage", "gauge"))
+    # print(colorCheck("phage", "scoff"))
