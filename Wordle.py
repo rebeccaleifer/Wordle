@@ -37,6 +37,7 @@ def wordle(word):
                 wordTemp = wordTemp[:index] + "_" + wordTemp[index + 1:]
                 print(wordTemp + " green check")
                 gw.set_square_color(row, index, "#66BB66")
+                gw.set_key_color(char, "#66BB66")
                 
             index = index + 1
         
@@ -46,7 +47,11 @@ def wordle(word):
             if wordTemp.find(char) >= 0:
                 wordTemp = wordTemp[:wordTemp.find(char)] + "_" + wordTemp[wordTemp.find(char) + 1:]
                 gw.set_square_color(row, index, "#CCBB66")
+                if gw.get_key_color(char) != "#66BB66":
+                    gw.set_key_color(char, "#CCBB66") 
                 print(wordTemp + " yellow check")
+            elif gw.get_key_color(char) != "#66BB66" and gw.get_key_color(char) != "#CCBB66":
+                gw.set_key_color(char, "#999999")
             index = index + 1
 
         # Checking for GRAY
