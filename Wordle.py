@@ -72,8 +72,8 @@ def wordle(word):
 # Startup code
 
 if __name__ == "__main__":
-    # TheWordle = choice(FIVE_LETTER_WORDS)
-    TheWordle = "SACKS"
+    TheWordle = choice(FIVE_LETTER_WORDS)
+    # TheWordle = "SACKS"
     wordle(TheWordle.upper())
     
     print(TheWordle)
