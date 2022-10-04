@@ -34,13 +34,14 @@ def colorCheck(word, guess):
     
     # Checking for YELLOW
     index = 0
-    for char in wordTemp:
-        if guess.find(char) >= 0:
+    for char in guess:
+        if wordTemp.find(char) >= 0:
             guessScore[index] = "yellow"
             wordTemp = wordTemp[:index] + "_" + wordTemp[index + 1:]
             print(wordTemp + " yellow check")
-        index = index+ 1
+        index = index + 1
 
+    # Checking for GRAY
     index = 0
     for color in guessScore:
         if color == "white":
