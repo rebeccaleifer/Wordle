@@ -46,7 +46,7 @@ def wordle(word):
         index = 0
         for char in guess:
             if wordTemp.find(char) >= 0:
-                wordTemp = wordTemp[:index] + "_" + wordTemp[index + 1:]
+                wordTemp = wordTemp[:wordTemp.find(char)] + "_" + wordTemp[wordTemp.find(char) + 1:]
                 gw.set_square_color(row, index, "#CCBB66")
                 print(wordTemp + " yellow check")
             index = index + 1
@@ -68,7 +68,7 @@ def wordle(word):
 
 if __name__ == "__main__":
     TheWordle = choice(FIVE_LETTER_WORDS)
-    wordle(TheWordle.upper())
-    
+    # wordle(TheWordle.upper())
+    wordle("DOWNS")
     print(TheWordle)
     # print(colorCheck("phage", "scoff"))
