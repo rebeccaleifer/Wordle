@@ -35,6 +35,7 @@ def wordle(word):
             gw.set_square_letter(row, index, guess[index])
             if char == guess[index]:
                 wordTemp = wordTemp[:index] + "_" + wordTemp[index + 1:]
+                # guess = guess[:index] + "*" + guess[index + 1:]
                 print(wordTemp + " green check")
                 gw.set_square_color(row, index, "#66BB66")
                 gw.set_key_color(char, "#66BB66")
@@ -43,15 +44,16 @@ def wordle(word):
         
         # Checking for YELLOW
         index = 0
-        for char in guess:
-            if wordTemp.find(char) >= 0:
-                wordTemp = wordTemp[:wordTemp.find(char)] + "_" + wordTemp[wordTemp.find(char) + 1:]
-                gw.set_square_color(row, index, "#CCBB66")
-                if gw.get_key_color(char) != "#66BB66":
-                    gw.set_key_color(char, "#CCBB66") 
-                print(wordTemp + " yellow check")
-            elif gw.get_key_color(char) != "#66BB66" and gw.get_key_color(char) != "#CCBB66":
-                gw.set_key_color(char, "#999999")
+        for char in wordTemp:
+            if char != "_":
+                if wordTemp.find(guess[index]) >= 0:
+                    wordTemp = wordTemp[:wordTemp.find(char)] + "_" + wordTemp[wordTemp.find(char) + 1:]
+                    gw.set_square_color(row, index, "#CCBB66")
+                    if gw.get_key_color(guess[index]) != "#66BB66":
+                        gw.set_key_color(guess[index], "#CCBB66") 
+                    print(wordTemp + " yellow check")
+                elif gw.get_key_color(guess[index]) != "#66BB66" and gw.get_key_color(guess[index]) != "#CCBB66":
+                    gw.set_key_color(guess[index], "#999999")
             index = index + 1
 
         # Checking for GRAY
@@ -70,7 +72,8 @@ def wordle(word):
 # Startup code
 
 if __name__ == "__main__":
-    TheWordle = choice(FIVE_LETTER_WORDS)
+    # TheWordle = choice(FIVE_LETTER_WORDS)
+    TheWordle = "SACKS"
     wordle(TheWordle.upper())
     
     print(TheWordle)
