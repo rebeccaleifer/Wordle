@@ -19,8 +19,12 @@ def wordle(word):
     
     def enter_action(guess):
         if guess.lower() in FIVE_LETTER_WORDS:
-            colorCheck(word, guess)
-            gw.show_message("Guess: " + guess + " Correct Word: " + word)
+            greenCount = colorCheck(word, guess)
+            print(greenCount)
+            if greenCount == len(word):
+                gw.show_message("Great Job! Guess count: " + str(gw.get_current_row()))
+            else:
+                gw.show_message("Guess: " + guess + " Correct Word: " + word)
         else:
             gw.show_message("Not a valid word")
 
@@ -28,7 +32,7 @@ def wordle(word):
         row = gw.get_current_row()
         wordTemp = word
         index = 0
-
+        greenCount = 0
             # Checking for GREEN
         for char in wordTemp:
             gw.set_square_letter(row, index, guess[index])
@@ -36,9 +40,10 @@ def wordle(word):
                 wordTemp = wordTemp[:index] + "_" + wordTemp[index + 1:]
                 guess = guess[:index] + "*" + guess[index + 1:]
                 gw.set_square_color(row, index, CORRECT_COLOR)
-                gw.set_key_color(char, CORRECT_COLOR)   
+                gw.set_key_color(char, CORRECT_COLOR)
+                greenCount = greenCount + 1   
             index = index + 1
-        
+            
             # Checking for YELLOW
         index = 0
         for char in guess:
@@ -63,8 +68,11 @@ def wordle(word):
             currentColumn = currentColumn + 1
         if gw.get_current_row() < 5:
             gw.set_current_row(row + 1)
+        return greenCount
+
 
     gw = WordleGWindow()
+    
     gw.show_message("Correct word: " + word)
     gw.add_enter_listener(enter_action)
       
