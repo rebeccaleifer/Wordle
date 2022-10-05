@@ -8,24 +8,30 @@ Group 5: Rebecca Leifer, Brayden Buhler, YunChen Lee, Levi Morse, Ransom Allphin
 """
 
 import random
-import enchant
 from random import choice
 from WordleDictionary import FIVE_LETTER_WORDS
+<<<<<<< HEAD
 
 from WordleGraphics import WordleGWindow, N_COLS, N_ROWS
 d = enchant.Dict("en_US")
+=======
+from WordleGraphics import CORRECT_COLOR, MISSING_COLOR, PRESENT_COLOR, UNKNOWN_COLOR, WordleGWindow, N_COLS, N_ROWS
+
+>>>>>>> 185aa43fb792385a83f79fac1d5b441056ce2448
 
 
 def wordle(word):
     
     def enter_action(guess):
-        if d.check(guess) or guess == word: # This line is here because when the system chose COOEY as a word, the Enchant package didn't think it was one.
+        
+        if guess.lower() in FIVE_LETTER_WORDS:
             colorCheck(word, guess)
-            gw.show_message("Nice guess" + " " + guess)
+            gw.show_message("Guess: " + guess + " Correct Word: " + word)
         else:
             gw.show_message("Not a valid word")
 
     gw = WordleGWindow()
+    gw.show_message("Correct word: " + word)
     gw.add_enter_listener(enter_action)
 
     def colorCheck(word, guess):
@@ -40,8 +46,8 @@ def wordle(word):
                 wordTemp = wordTemp[:index] + "_" + wordTemp[index + 1:]
                 guess = guess[:index] + "*" + guess[index + 1:]
                 print(wordTemp + " green check")
-                gw.set_square_color(row, index, "#66BB66")
-                gw.set_key_color(char, "#66BB66")
+                gw.set_square_color(row, index, CORRECT_COLOR)
+                gw.set_key_color(char, CORRECT_COLOR)
                 
             index = index + 1
         
@@ -51,12 +57,12 @@ def wordle(word):
             if char != "*":
                 if wordTemp.find(guess[index]) >= 0:
                     wordTemp = wordTemp[:wordTemp.find(char)] + "_" + wordTemp[wordTemp.find(char) + 1:]
-                    gw.set_square_color(row, index, "#CCBB66")
-                    if gw.get_key_color(guess[index]) != "#66BB66":
-                        gw.set_key_color(guess[index], "#CCBB66") 
+                    gw.set_square_color(row, index, PRESENT_COLOR)
+                    if gw.get_key_color(guess[index]) != CORRECT_COLOR:
+                        gw.set_key_color(guess[index], PRESENT_COLOR) 
                     print(wordTemp + " yellow check")
-                elif gw.get_key_color(guess[index]) != "#66BB66" and gw.get_key_color(guess[index]) != "#CCBB66":
-                    gw.set_key_color(guess[index], "#999999")
+                elif gw.get_key_color(guess[index]) != CORRECT_COLOR and gw.get_key_color(guess[index]) != PRESENT_COLOR:
+                    gw.set_key_color(guess[index], MISSING_COLOR)
             index = index + 1
 
         # Checking for GRAY
@@ -64,11 +70,16 @@ def wordle(word):
         columns = 5
         currentColumn = 0
         while currentColumn < columns:
-            if gw.get_square_color(row, currentColumn) == "#FFFFFF":
-                gw.set_square_color(row, currentColumn, "#999999")
+            if gw.get_square_color(row, currentColumn) == UNKNOWN_COLOR:
+                gw.set_square_color(row, currentColumn, MISSING_COLOR)
             index = index + 1
             currentColumn = currentColumn + 1
-        gw.set_current_row(row + 1)
+        print("Current Row: ", gw.get_current_row())
+        if gw.get_current_row() < 5:
+            gw.set_current_row(row + 1)
+
+        print("Next Row: ", gw.get_current_row())
+            
         
 
 
@@ -79,5 +90,3 @@ if __name__ == "__main__":
     # TheWordle = "SACKS"
     wordle(TheWordle.upper())
     
-    print(TheWordle)
-    # print(colorCheck("phage", "scoff"))
