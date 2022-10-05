@@ -28,15 +28,6 @@ def wordle(word):
     gw = WordleGWindow()
     gw.add_enter_listener(enter_action)
 
-<<<<<<< HEAD
-    # set white color as default for keys as users play the game
-    # set white color as default til users click ENTER
-
-    # change the key color based on the validation
-    # embedded in the loop of validation
-    gw.set_key_color("Q", CORRECT_COLOR)
-    gw.get_key_color("Q")
-=======
     def colorCheck(word, guess):
         row = gw.get_current_row()
         print(gw.get_square_color(row, 0))
@@ -79,21 +70,14 @@ def wordle(word):
             currentColumn = currentColumn + 1
         gw.set_current_row(row + 1)
         
->>>>>>> 092d096741708763a735cbdd906960b037f3c8c7
 
 
 # Startup code
 
 if __name__ == "__main__":
-<<<<<<< HEAD
-    wordle()
-    # TheWordle = choice(FIVE_LETTER_WORDS)
-    # print(TheWordle)
-=======
     TheWordle = choice(FIVE_LETTER_WORDS)
     # TheWordle = "SACKS"
     wordle(TheWordle.upper())
     
     print(TheWordle)
     # print(colorCheck("phage", "scoff"))
->>>>>>> 092d096741708763a735cbdd906960b037f3c8c7
