@@ -10,14 +10,9 @@ Group 5: Rebecca Leifer, Brayden Buhler, YunChen Lee, Levi Morse, Ransom Allphin
 import random
 from random import choice
 from WordleDictionary import FIVE_LETTER_WORDS
-<<<<<<< HEAD
 
 from WordleGraphics import WordleGWindow, N_COLS, N_ROWS
 d = enchant.Dict("en_US")
-=======
-from WordleGraphics import CORRECT_COLOR, MISSING_COLOR, PRESENT_COLOR, UNKNOWN_COLOR, WordleGWindow, N_COLS, N_ROWS
-
->>>>>>> 185aa43fb792385a83f79fac1d5b441056ce2448
 
 
 def wordle(word):
