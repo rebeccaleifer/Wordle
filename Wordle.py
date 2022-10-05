@@ -77,10 +77,10 @@ def wordle(word):
     gw.show_message("Correct word: " + word)
     gw.add_enter_listener(enter_action)
 
-    for i in range(5):
-        x = i
-        z = TheWordle[i].upper()
-        gw.set_square_letter(0, x, z)
+    # for i in range(5):
+    #     x = i
+    #     z = TheWordle[i].upper()
+    #     gw.set_square_letter(0, x, z)
       
 # Startup code
 
