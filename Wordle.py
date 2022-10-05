@@ -1,16 +1,19 @@
 # File: Wordle.py
 
 """
-This module is the starter file for the Wordle assignment.
-BE SURE TO UPDATE THIS COMMENT WHEN YOU WRITE THE CODE.
+This is the finished logic for Project 4 : WORDLE
+Submission by Group 5
+Consisting of :
+    o Leifer, Rebecca
+    o Buhler, Brayden
+    o Lee, Yun-Chen
+    o Morse, Levi
+    o Allphin, Ransom
 """
 
-# import random
 from random import choice
 from WordleDictionary import FIVE_LETTER_WORDS
 from WordleGraphics import CORRECT_COLOR, MISSING_COLOR, PRESENT_COLOR, UNKNOWN_COLOR, WordleGWindow, N_COLS, N_ROWS
-
-
 
 def wordle(word):
     
