@@ -12,7 +12,6 @@ from random import choice
 from WordleDictionary import FIVE_LETTER_WORDS
 
 from WordleGraphics import WordleGWindow, N_COLS, N_ROWS
-d = enchant.Dict("en_US")
 
 
 def wordle(word):
