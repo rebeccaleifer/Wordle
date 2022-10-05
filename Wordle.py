@@ -23,6 +23,7 @@ def wordle(word):
             print(greenCount)
             if greenCount == len(word):
                 gw.show_message("Great Job! Guess count: " + str(gw.get_current_row()))
+                
             else:
                 gw.show_message("Guess: " + guess + " Correct Word: " + word)
         else:
@@ -75,6 +76,11 @@ def wordle(word):
     
     gw.show_message("Correct word: " + word)
     gw.add_enter_listener(enter_action)
+
+    for i in range(5):
+        x = i
+        z = TheWordle[i].upper()
+        gw.set_square_letter(0, x, z)
       
 # Startup code
 
