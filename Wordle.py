@@ -18,7 +18,6 @@ from WordleGraphics import CORRECT_COLOR, MISSING_COLOR, PRESENT_COLOR, UNKNOWN_
 def wordle(word):
     # Call the word validation function and display results
     def enter_action(guess):
-        # if gw.get_current_row()
         if guess.lower() in FIVE_LETTER_WORDS:
             guessCount = colorCheck(word, guess)
             print("Current row ", str(gw.get_current_row()))
