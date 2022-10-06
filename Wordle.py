@@ -16,24 +16,26 @@ from WordleDictionary import FIVE_LETTER_WORDS
 from WordleGraphics import CORRECT_COLOR, MISSING_COLOR, PRESENT_COLOR, UNKNOWN_COLOR, WordleGWindow, N_COLS, N_ROWS
 
 def wordle(word):
-    
+
     def enter_action(guess):
+        # if gw.get_current_row()
         if guess.lower() in FIVE_LETTER_WORDS:
-            greenCount = colorCheck(word, guess)
-            print(greenCount)
-            if greenCount == len(word):
+            guessCount = colorCheck(word, guess)
+            print("Current row ", str(gw.get_current_row()))
+            if guessCount[0] == len(word):
                 gw.show_message("Great Job! Guess count: " + str(gw.get_current_row()))
-            elif gw.get_current_row == 5:
-                gw.show_message("Guess: " + guess + " Correct Word: " + word)
+            if guessCount[1]:
+                gw.show_message("Fail! Correct Word: " + word)
         else:
             gw.show_message("Not a valid word")
 
+    # Word validaiton funciton
+    # Check if the words match and accodingly change the square and key colors
     def colorCheck(word, guess):
         row = gw.get_current_row()
         wordTemp = word
         index = 0
         greenCount = 0
-        totalRows = 0
             # Checking for GREEN
         for char in wordTemp:
             gw.set_square_letter(row, index, guess[index])
@@ -58,7 +60,7 @@ def wordle(word):
                     gw.set_key_color(guess[index], MISSING_COLOR)
             index = index + 1
 
-            # Checking for GRAY
+        # Checking for GRAY
         index = 0
         columns = 5
         currentColumn = 0
@@ -67,23 +69,22 @@ def wordle(word):
                 gw.set_square_color(row, currentColumn, MISSING_COLOR)
             index = index + 1
             currentColumn = currentColumn + 1
+        lastGuess = False
+        if gw.get_current_row() == 5:
+            lastGuess = True
         if gw.get_current_row() < 5:
             gw.set_current_row(row + 1)
-        return greenCount
-
+        
+        guessCount = [greenCount, lastGuess]
+        return guessCount
 
     gw = WordleGWindow()
-    
-    gw.show_message("Correct word: " + word)
+    print(gw.get_current_row())
+    # gw.show_message("Correct word: " + word)
     gw.add_enter_listener(enter_action)
 
-    # for i in range(5):
-    #     x = i
-    #     z = TheWordle[i].upper()
-    #     gw.set_square_letter(0, x, z)
       
 # Startup code
-
 if __name__ == "__main__":
     TheWordle = choice(FIVE_LETTER_WORDS)
     # TheWordle = "SACKS"
