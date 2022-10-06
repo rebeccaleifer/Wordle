@@ -22,7 +22,6 @@ def wordle(word):
         if guess.lower() in FIVE_LETTER_WORDS:
             guessCount = colorCheck(word, guess)
             print("Current row ", str(gw.get_current_row()))
-            print(word)
             if guessCount[0] == len(word):
                 gw.show_message("Great Job! Guess count: " + str(gw.get_current_row()))
             if guessCount[1]:
