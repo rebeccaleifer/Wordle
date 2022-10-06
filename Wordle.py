@@ -20,10 +20,11 @@ def wordle(word):
     def enter_action(guess):
         if guess.lower() in FIVE_LETTER_WORDS:
             guessCount = colorCheck(word, guess)
+            print(guessCount)
             print("Current row ", str(gw.get_current_row()))
             if guessCount[0] == len(word):
                 gw.show_message("Great Job! Guess count: " + str(gw.get_current_row()))
-            if guessCount[1]:
+            elif guessCount[1]:
                 gw.show_message("Fail! Correct Word: " + word)
         else:
             gw.show_message("Not a valid word")
@@ -83,11 +84,10 @@ def wordle(word):
     gw = WordleGWindow()
     print(gw.get_current_row())
     gw.add_enter_listener(enter_action)
-
+    print(word)
       
 # Startup code
 if __name__ == "__main__":
     TheWordle = choice(FIVE_LETTER_WORDS)
-    # TheWordle = "SACKS"
     wordle(TheWordle.upper())
     
