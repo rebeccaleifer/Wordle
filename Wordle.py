@@ -13,19 +13,20 @@ Consisting of :
 
 from random import choice
 from WordleDictionary import FIVE_LETTER_WORDS
-from WordleGraphics import CORRECT_COLOR, MISSING_COLOR, PRESENT_COLOR, UNKNOWN_COLOR, WordleGWindow, N_COLS, N_ROWS
+from WordleGraphics import CORRECT_COLOR, LAST_GUESS, MISSING_COLOR, PRESENT_COLOR, UNKNOWN_COLOR, WordleGWindow, N_COLS, N_ROWS
 
 def wordle(word):
-    
+
     def enter_action(guess):
+        # if gw.get_current_row()
         if guess.lower() in FIVE_LETTER_WORDS:
-            greenCount = colorCheck(word, guess)
-            print(greenCount)
-            if greenCount == len(word):
+            guessCount = colorCheck(word, guess)
+            print("Current row ", str(gw.get_current_row()))
+            print(word)
+            if guessCount[0] == len(word):
                 gw.show_message("Great Job! Guess count: " + str(gw.get_current_row()))
-                
-            else:
-                gw.show_message("Guess: " + guess + " Correct Word: " + word)
+            if guessCount[1]:
+                gw.show_message("Fail! Correct Word: " + word)
         else:
             gw.show_message("Not a valid word")
 
@@ -67,14 +68,18 @@ def wordle(word):
                 gw.set_square_color(row, currentColumn, MISSING_COLOR)
             index = index + 1
             currentColumn = currentColumn + 1
+        lastGuess = False
+        if gw.get_current_row() == 5:
+            lastGuess = True
         if gw.get_current_row() < 5:
             gw.set_current_row(row + 1)
-        return greenCount
-
+        
+        guessCount = [greenCount, lastGuess]
+        return guessCount
 
     gw = WordleGWindow()
-    
-    gw.show_message("Correct word: " + word)
+    print(gw.get_current_row())
+    # gw.show_message("Correct word: " + word)
     gw.add_enter_listener(enter_action)
 
     # for i in range(5):
