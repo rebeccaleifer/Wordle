@@ -16,7 +16,7 @@ from WordleDictionary import FIVE_LETTER_WORDS
 from WordleGraphics import CORRECT_COLOR, MISSING_COLOR, PRESENT_COLOR, UNKNOWN_COLOR, WordleGWindow, N_COLS, N_ROWS
 
 def wordle(word):
-
+    # Call the word validation function and display results
     def enter_action(guess):
         # if gw.get_current_row()
         if guess.lower() in FIVE_LETTER_WORDS:
@@ -36,7 +36,8 @@ def wordle(word):
         wordTemp = word
         index = 0
         greenCount = 0
-            # Checking for GREEN
+
+        # Checking for GREEN
         for char in wordTemp:
             gw.set_square_letter(row, index, guess[index])
             if char == guess[index]:
@@ -47,7 +48,7 @@ def wordle(word):
                 greenCount = greenCount + 1   
             index = index + 1
             
-            # Checking for YELLOW
+        # Checking for YELLOW
         index = 0
         for char in guess:
             if char != "*":
@@ -69,6 +70,8 @@ def wordle(word):
                 gw.set_square_color(row, currentColumn, MISSING_COLOR)
             index = index + 1
             currentColumn = currentColumn + 1
+
+        # Check for the last guess
         lastGuess = False
         if gw.get_current_row() == 5:
             lastGuess = True
@@ -80,7 +83,6 @@ def wordle(word):
 
     gw = WordleGWindow()
     print(gw.get_current_row())
-    # gw.show_message("Correct word: " + word)
     gw.add_enter_listener(enter_action)
 
       
