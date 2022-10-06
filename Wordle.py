@@ -23,8 +23,7 @@ def wordle(word):
             print(greenCount)
             if greenCount == len(word):
                 gw.show_message("Great Job! Guess count: " + str(gw.get_current_row()))
-                
-            else:
+            elif gw.get_current_row == 5:
                 gw.show_message("Guess: " + guess + " Correct Word: " + word)
         else:
             gw.show_message("Not a valid word")
@@ -34,6 +33,7 @@ def wordle(word):
         wordTemp = word
         index = 0
         greenCount = 0
+        totalRows = 0
             # Checking for GREEN
         for char in wordTemp:
             gw.set_square_letter(row, index, guess[index])
